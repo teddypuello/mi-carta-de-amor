@@ -141,3 +141,10 @@ document.getElementById("page").innerHTML=pages[0];
 </html> 
 <img width="310" height="163" alt="hellokitty" src="https://github.com/user-attachments/assets/03695458-e91b-442e-8323-f01fc0127cb0" />
 
+<!DOCTYPE html>
+<html>
+<body style="text-align:center">
+  <h1>Prueba de imagen</h1>
+  <img src="hellokitty.png" width="200">
+</body>
+</html>
