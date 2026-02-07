@@ -16,20 +16,23 @@ body{
   height:100vh;
 }
 
-/* Kitty */
+/* HELLO KITTY BAILANDO */
 .kitty{
   position:absolute;
   top:10px;
-  width:120px;
-  animation:kittyMove 4s ease-in-out infinite;
+  width:130px;
+  animation: dance 2s infinite ease-in-out;
 }
 
-@keyframes kittyMove{
-  0%{transform:translateX(0);}
-  50%{transform:translateX(20px);}
-  100%{transform:translateX(0);}
+@keyframes dance{
+  0%   {transform:translateX(0) rotate(0deg);}
+  25%  {transform:translateX(15px) rotate(5deg);}
+  50%  {transform:translateX(0) rotate(0deg);}
+  75%  {transform:translateX(-15px) rotate(-5deg);}
+  100% {transform:translateX(0) rotate(0deg);}
 }
 
+/* LIBRO */
 .book{
   background:white;
   width:380px;
@@ -62,6 +65,7 @@ button:hover{ background:#ff4d88; }
   to{opacity:1; transform:translateX(0);}
 }
 
+/* CORAZONES */
 .heart{
   position:absolute;
   color:red;
@@ -123,7 +127,7 @@ function next(){
 }
 
 function hearts(){
-  for(let i=0;i<18;i++){
+  for(let i=0;i<20;i++){
     const h=document.createElement("div");
     h.className="heart";
     h.innerHTML="❤️";
@@ -137,14 +141,5 @@ function hearts(){
 document.getElementById("page").innerHTML=pages[0];
 </script>
 
-</body>
-</html> 
-<img width="310" height="163" alt="hellokitty" src="https://github.com/user-attachments/assets/03695458-e91b-442e-8323-f01fc0127cb0" />
-
-<!DOCTYPE html>
-<html>
-<body style="text-align:center">
-  <h1>Prueba de imagen</h1>
-  <img src="hellokitty.png" width="200">
 </body>
 </html>
