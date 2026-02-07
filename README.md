@@ -153,5 +153,5 @@ document.getElementById("page").innerHTML=pages[0];
 </script>
 
 </body>
-</ht<img width="310" height="163" alt="hellokitty" src="https://github.com/user-attachments/assets/0061229c-6e56-4f56-a1d8-fab24eba02ea" />
-ml>
+</html>
+<img width="310" height="163" alt="hellokitty" src="https://github.com/user-attachments/assets/4a861724-d1bd-4cce-b0a7-203c88a49a5b" />
