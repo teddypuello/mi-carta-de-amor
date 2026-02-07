@@ -1,124 +1,157 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Asesor Virtual 💖</title>
+<meta charset="UTF-8">
+<title>Libro del Amor ❤️</title>
 
-  <!-- EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    (function(){
-      emailjs.init("TU_PUBLIC_KEY_AQUI"); // 👈 reemplaza
-    })();
-  </script>
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(#ffd1dc, #fff);
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fff0f5;
-      text-align: center;
-      padding: 30px;
-      overflow: hidden;
-    }
+/* KITTY */
+.kitty{
+  position:absolute;
+  top:10px;
+  width:130px;
+}
 
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      max-width: 400px;
-      margin: auto;
-      box-shadow: 0 10px 25px rgba(0,0,0,.1);
-    }
+/* ANIMACIÓN AL CELEBRAR */
+.celebrate{
+  animation: dance 0.8s infinite;
+}
 
-    button {
-      background: #ff69b4;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
+@keyframes dance{
+  0%   {transform:translateX(0) rotate(0deg);}
+  25%  {transform:translateX(12px) rotate(6deg);}
+  50%  {transform:translateX(0) rotate(0deg);}
+  75%  {transform:translateX(-12px) rotate(-6deg);}
+  100% {transform:translateX(0) rotate(0deg);}
+}
 
-    .notification {
-      display: none;
-      margin-top: 15px;
-      color: green;
-      font-weight: bold;
-    }
+/* LIBRO */
+.book{
+  background:white;
+  width:380px;
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,.2);
+  animation:fade .6s;
+}
 
-    /* Hello Kitty */
-    .kitty {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      width: 120px;
-    }
+h2{ color:#ff4d88; }
 
-    /* Corazones */
-    .heart {
-      position: absolute;
-      color: pink;
-      animation: float 5s linear infinite;
-      font-size: 20px;
-    }
+button{
+  display:block;
+  width:100%;
+  margin:10px 0;
+  padding:12px;
+  border:none;
+  border-radius:25px;
+  background:#ff69b4;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
 
-    @keyframes float {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-600px); opacity: 0; }
-    }
-  </style>
+button:hover{ background:#ff4d88; }
+
+@keyframes fade{
+  from{opacity:0; transform:translateX(30px);}
+  to{opacity:1; transform:translateX(0);}
+}
+
+/* CORAZONES */
+.heart{
+  position:absolute;
+  color:red;
+  font-size:22px;
+  animation:float 5s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(0); opacity:1;}
+  to{transform:translateY(-600px); opacity:0;}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="card">
-    <h2>💬 Tu asesor virtual</h2>
-    <p>Haz una pregunta interesante 💖</p>
+<img src="hellokitty.png" id="kitty" class="kitty">
 
-    <input type="text" id="question" placeholder="Escribe aquí..." style="width:90%;padding:8px">
-    <br>
-    <button onclick="sendQuestion()">Enviar ✨</button>
+<div class="book" id="page"></div>
 
-    <div class="notification" id="notif">
-      💌 ¡Pregunta enviada con éxito!
-    </div>
-  </div>
+<script>
+let step=0;
+const kitty=document.getElementById("kitty");
 
-  <!-- Hello Kitty -->
-  <img src="hello-kitty.png" class="kitty">
+const pages=[
+`
+<h2>💌 Pregunta 1</h2>
+<p>¿Dianelly Leturia quieres ser mi San Valentín?</p>
+<button onclick="next()">Segura</button>
+<button onclick="next()">Muy segura</button>
+<button onclick="next()">Segurita ❤️</button>
+`,
+`
+<h2>💖 Pregunta 2</h2>
+<p>¿Muy segurita señorita Leturia que quiere ser mi San Valentín? 🥺😍</p>
+<button onclick="next()">Sí</button>
+<button onclick="next()">Claro</button>
+<button onclick="next()">Acepto ❤️</button>
+`,
+`
+<h2>💍 Pregunta 3</h2>
+<p>¿Aceptas mi amor? 😍💘</p>
+<button onclick="next()">Sí acepto ❤️</button>
+`,
+`
+<h2>❤️ Para ti</h2>
+<p>
+Eres la persona con la que quiero construir un futuro.<br><br>
+Cada día a tu lado me confirma que mi lugar es contigo ❤️<br><br>
+Si llegaste hasta aquí, es porque tu corazón ya sabía la respuesta…<br><br>
+Te amooo muchísimo ❤️
+</p>
+`
+];
 
-  <script>
-    function sendQuestion() {
-      const question = document.getElementById("question").value;
-      if (!question) return alert("Escribe una pregunta 💭");
+function next(){
+  step++;
+  document.getElementById("page").innerHTML=pages[step];
+  celebrateKitty();
+  hearts();
+}
 
-      emailjs.send(
-        "TU_SERVICE_ID",        // 👈 tu servicio
-        "TU_TEMPLATE_ID",       // 👈 nombre de la plantilla que creaste
-        {
-          message: question,
-          to_email: "Teddypuellopuerre02@gmail.com"
-        }
-      ).then(() => {
-        document.getElementById("notif").style.display = "block";
-        document.getElementById("question").value = "";
-        createHearts();
-      });
-    }
+function celebrateKitty(){
+  kitty.classList.add("celebrate");
+  setTimeout(()=>kitty.classList.remove("celebrate"),1500);
+}
 
-    function createHearts() {
-      for (let i = 0; i < 15; i++) {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "💖";
-        heart.style.left = Math.random() * window.innerWidth + "px";
-        heart.style.bottom = "0px";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 5000);
-      }
-    }
-  </script>
+function hearts(){
+  for(let i=0;i<18;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*window.innerWidth+"px";
+    h.style.bottom="0px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  }
+}
+
+document.getElementById("page").innerHTML=pages[0];
+</script>
 
 </body>
 </html>
+ 
