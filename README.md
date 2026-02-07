@@ -16,19 +16,23 @@ body{
   height:100vh;
 }
 
-/* HELLO KITTY BAILANDO */
+/* KITTY */
 .kitty{
   position:absolute;
   top:10px;
   width:130px;
-  animation: dance 2s infinite ease-in-out;
+}
+
+/* ANIMACIÓN AL CELEBRAR */
+.celebrate{
+  animation: dance 0.8s infinite;
 }
 
 @keyframes dance{
   0%   {transform:translateX(0) rotate(0deg);}
-  25%  {transform:translateX(15px) rotate(5deg);}
+  25%  {transform:translateX(12px) rotate(6deg);}
   50%  {transform:translateX(0) rotate(0deg);}
-  75%  {transform:translateX(-15px) rotate(-5deg);}
+  75%  {transform:translateX(-12px) rotate(-6deg);}
   100% {transform:translateX(0) rotate(0deg);}
 }
 
@@ -82,12 +86,13 @@ button:hover{ background:#ff4d88; }
 
 <body>
 
-<img src="hellokitty.png" class="kitty">
+<img src="hellokitty.png" id="kitty" class="kitty">
 
 <div class="book" id="page"></div>
 
 <script>
 let step=0;
+const kitty=document.getElementById("kitty");
 
 const pages=[
 `
@@ -123,11 +128,17 @@ Te amooo muchísimo ❤️
 function next(){
   step++;
   document.getElementById("page").innerHTML=pages[step];
+  celebrateKitty();
   hearts();
 }
 
+function celebrateKitty(){
+  kitty.classList.add("celebrate");
+  setTimeout(()=>kitty.classList.remove("celebrate"),1500);
+}
+
 function hearts(){
-  for(let i=0;i<20;i++){
+  for(let i=0;i<18;i++){
     const h=document.createElement("div");
     h.className="heart";
     h.innerHTML="❤️";
@@ -142,6 +153,5 @@ document.getElementById("page").innerHTML=pages[0];
 </script>
 
 </body>
-</html<
-><img width="310" height="163" alt="hellokitty" src="https://github.com/user-attachments/assets/9398e51f-b37d-4dc3-abc7-9618840a1c3d" />
-
+</ht<img width="310" height="163" alt="hellokitty" src="https://github.com/user-attachments/assets/0061229c-6e56-4f56-a1d8-fab24eba02ea" />
+ml>
