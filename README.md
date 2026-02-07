@@ -2,177 +2,123 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para Dianelly ❤️</title>
+  <title>Asesor Virtual 💖</title>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("TU_PUBLIC_KEY_AQUI"); // 👈 reemplaza
+    })();
+  </script>
+
   <style>
     body {
-      margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
       background: #fff0f5;
-      font-family: 'Arial', sans-serif;
-      overflow: hidden;
       text-align: center;
+      padding: 30px;
+      overflow: hidden;
     }
 
-    .page {
-      display: none;
-      height: 100vh;
-      padding: 40px 20px;
-      box-sizing: border-box;
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,.1);
     }
 
-    .page.active {
-      display: block;
-      animation: fade 0.8s ease;
-    }
-
-    h1 {
-      color: #e60073;
-    }
-
-    .options button {
-      display: block;
-      margin: 15px auto;
-      padding: 12px 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 25px;
-      background: #ff4d6d;
+    button {
+      background: #ff69b4;
       color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
       cursor: pointer;
-      width: 260px;
+      margin-top: 10px;
     }
 
-    .options button:hover {
-      background: #e60073;
+    .notification {
+      display: none;
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
     }
 
-    @keyframes fade {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Hello Kitty */
+    .kitty {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 120px;
     }
 
     /* Corazones */
     .heart {
-      position: fixed;
-      bottom: -20px;
-      font-size: 22px;
-      animation: float 6s linear infinite;
-      z-index: 1;
+      position: absolute;
+      color: pink;
+      animation: float 5s linear infinite;
+      font-size: 20px;
     }
 
     @keyframes float {
-      to {
-        transform: translateY(-110vh);
-        opacity: 0;
-      }
-    }
-
-    /* Hello Kitty */
-    .hello-kitty {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      width: 130px;
-      z-index: 2;
-      animation: kitty 3s ease-in-out infinite;
-    }
-
-    @keyframes kitty {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-      100% { transform: translateY(0); }
-    }
-
-    p {
-      font-size: 18px;
-      color: #444;
-      max-width: 500px;
-      margin: auto;
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-600px); opacity: 0; }
     }
   </style>
 </head>
+
 <body>
 
-<!-- PÁGINA 1 -->
-<div class="page active">
-  <h1>¿Dianelly Leturia quieres ser<br>Mi San Valentín? 💖</h1>
-  <div class="options">
-    <button onclick="sendWA('Segura ❤️')">Segura</button>
-    <button onclick="sendWA('Muy segura 😍')">Muy segura</button>
-    <button onclick="sendWA('Segurita ❤️')">Segurita ❤️</button>
+  <div class="card">
+    <h2>💬 Tu asesor virtual</h2>
+    <p>Haz una pregunta interesante 💖</p>
+
+    <input type="text" id="question" placeholder="Escribe aquí..." style="width:90%;padding:8px">
+    <br>
+    <button onclick="sendQuestion()">Enviar ✨</button>
+
+    <div class="notification" id="notif">
+      💌 ¡Pregunta enviada con éxito!
+    </div>
   </div>
-  <button onclick="nextPage()">➡️</button>
-</div>
 
-<!-- PÁGINA 2 -->
-<div class="page">
-  <h1>Muy segurita señorita Leturia<br>que quiere ser mi San Valentín? 🥺😍</h1>
-  <div class="options">
-    <button onclick="sendWA('Sí mi amor ❤️')">Sí</button>
-    <button onclick="sendWA('Claro 😍')">Claro</button>
-    <button onclick="sendWA('Acepto ❤️ ser tu San Valentín')">Acepto ❤️</button>
-  </div>
-  <button onclick="nextPage()">➡️</button>
-</div>
+  <!-- Hello Kitty -->
+  <img src="hello-kitty.png" class="kitty">
 
-<!-- PÁGINA 3 -->
-<div class="page">
-  <h1>¿Aceptas mi amor? 💍😍💘</h1>
-  <div class="options">
-    <button onclick="sendWA('Sí acepto ❤️💍')">Sí acepto ❤️</button>
-  </div>
-  <button onclick="nextPage()">➡️</button>
-</div>
+  <script>
+    function sendQuestion() {
+      const question = document.getElementById("question").value;
+      if (!question) return alert("Escribe una pregunta 💭");
 
-<!-- PÁGINA FINAL -->
-<div class="page">
-  <h1>💖 Mi Reina 💖</h1>
-  <p>
-    Eres la persona con la que quiero construir un futuro.<br>
-    Cada día a tu lado me confirma que mi lugar es contigo ❤️<br><br>
-
-    Si llegaste hasta aquí, es porque tal vez sí aceptaste,  
-    y tu corazón ya sabía la respuesta…<br><br>
-
-    Quiero que sepas que<br>
-    <strong>te amooo muchísimo ❤️</strong><br><br>
-
-    🐱💖 Hello Kitty 💖🐱
-  </p>
-</div>
-
-<img src="hellokitty.png" class="hello-kitty" alt="Hello Kitty abrazándose">
-
-<script>
-  let current = 0;
-  const pages = document.querySelectorAll('.page');
-
-  function nextPage() {
-    pages[current].classList.remove('active');
-    current++;
-    if (current < pages.length) {
-      pages[current].classList.add('active');
+      emailjs.send(
+        "TU_SERVICE_ID",        // 👈 tu servicio
+        "TU_TEMPLATE_ID",       // 👈 nombre de la plantilla que creaste
+        {
+          message: question,
+          to_email: "Teddypuellopuerre02@gmail.com"
+        }
+      ).then(() => {
+        document.getElementById("notif").style.display = "block";
+        document.getElementById("question").value = "";
+        createHearts();
+      });
     }
-  }
 
-  function sendWA(msg) {
-    const text = encodeURIComponent(msg);
-    window.open("https://wa.me/18093192007?text=" + text, "_blank");
-  }
-
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.innerHTML = '❤️';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = (3 + Math.random() * 4) + 's';
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-  }
-
-  setInterval(createHeart, 250);
-</script>
+    function createHearts() {
+      for (let i = 0; i < 15; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.bottom = "0px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
+    }
+  </script>
 
 </body>
 </html>
-<img width="225" height="225" alt="hello kitty" src="https://github.com/user-attachments/assets/d651f6a6-da4c-45f4-af14-69bee9afcb1c" />
