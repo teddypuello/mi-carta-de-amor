@@ -142,4 +142,6 @@ document.getElementById("page").innerHTML=pages[0];
 </script>
 
 </body>
-</html>
+</html<
+><img width="310" height="163" alt="hellokitty" src="https://github.com/user-attachments/assets/9398e51f-b37d-4dc3-abc7-9618840a1c3d" />
+
