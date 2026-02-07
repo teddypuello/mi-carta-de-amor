@@ -7,13 +7,27 @@
 <style>
 body{
   margin:0;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   background: linear-gradient(#ffd1dc, #fff);
   overflow:hidden;
   display:flex;
   justify-content:center;
   align-items:center;
   height:100vh;
+}
+
+/* Kitty */
+.kitty{
+  position:absolute;
+  top:10px;
+  width:120px;
+  animation:kittyMove 4s ease-in-out infinite;
+}
+
+@keyframes kittyMove{
+  0%{transform:translateX(0);}
+  50%{transform:translateX(20px);}
+  100%{transform:translateX(0);}
 }
 
 .book{
@@ -23,12 +37,10 @@ body{
   border-radius:20px;
   text-align:center;
   box-shadow:0 15px 40px rgba(0,0,0,.2);
-  animation:fade 0.6s;
+  animation:fade .6s;
 }
 
-h2{
-  color:#ff4d88;
-}
+h2{ color:#ff4d88; }
 
 button{
   display:block;
@@ -43,20 +55,17 @@ button{
   cursor:pointer;
 }
 
-button:hover{
-  background:#ff4d88;
-}
+button:hover{ background:#ff4d88; }
 
 @keyframes fade{
   from{opacity:0; transform:translateX(30px);}
   to{opacity:1; transform:translateX(0);}
 }
 
-/* corazones */
 .heart{
   position:absolute;
   color:red;
-  font-size:20px;
+  font-size:22px;
   animation:float 5s linear infinite;
 }
 
@@ -69,50 +78,52 @@ button:hover{
 
 <body>
 
+<img src="hellokitty.png" class="kitty">
+
 <div class="book" id="page"></div>
 
 <script>
-let step = 0;
+let step=0;
 
-const pages = [
-  `
-  <h2>💌 Pregunta 1</h2>
-  <p>¿Dianelly Leturia quieres ser mi San Valentín?</p>
-  <button onclick="next()">Segura</button>
-  <button onclick="next()">Muy segura</button>
-  <button onclick="next()">Segurita ❤️</button>
-  `,
-  `
-  <h2>💖 Pregunta 2</h2>
-  <p>¿Muy segurita señorita Leturia que quiere ser mi San Valentín? 🥺😍</p>
-  <button onclick="next()">Sí</button>
-  <button onclick="next()">Claro</button>
-  <button onclick="next()">Acepto ❤️</button>
-  `,
-  `
-  <h2>💍 Pregunta 3</h2>
-  <p>¿Aceptas mi amor? 😍💘</p>
-  <button onclick="next()">Sí acepto ❤️</button>
-  `,
-  `
-  <h2>❤️ Para ti</h2>
-  <p>
-  Eres la persona con la que quiero construir un futuro.<br><br>
-  Cada día a tu lado me confirma que mi lugar es contigo ❤️<br><br>
-  Si llegaste hasta aquí, es porque tu corazón ya sabía la respuesta…<br><br>
-  Quiero que sepas que te amooo muchísimo ❤️
-  </p>
-  `
+const pages=[
+`
+<h2>💌 Pregunta 1</h2>
+<p>¿Dianelly Leturia quieres ser mi San Valentín?</p>
+<button onclick="next()">Segura</button>
+<button onclick="next()">Muy segura</button>
+<button onclick="next()">Segurita ❤️</button>
+`,
+`
+<h2>💖 Pregunta 2</h2>
+<p>¿Muy segurita señorita Leturia que quiere ser mi San Valentín? 🥺😍</p>
+<button onclick="next()">Sí</button>
+<button onclick="next()">Claro</button>
+<button onclick="next()">Acepto ❤️</button>
+`,
+`
+<h2>💍 Pregunta 3</h2>
+<p>¿Aceptas mi amor? 😍💘</p>
+<button onclick="next()">Sí acepto ❤️</button>
+`,
+`
+<h2>❤️ Para ti</h2>
+<p>
+Eres la persona con la que quiero construir un futuro.<br><br>
+Cada día a tu lado me confirma que mi lugar es contigo ❤️<br><br>
+Si llegaste hasta aquí, es porque tu corazón ya sabía la respuesta…<br><br>
+Te amooo muchísimo ❤️
+</p>
+`
 ];
 
 function next(){
   step++;
-  document.getElementById("page").innerHTML = pages[step];
+  document.getElementById("page").innerHTML=pages[step];
   hearts();
 }
 
 function hearts(){
-  for(let i=0;i<15;i++){
+  for(let i=0;i<18;i++){
     const h=document.createElement("div");
     h.className="heart";
     h.innerHTML="❤️";
@@ -123,8 +134,10 @@ function hearts(){
   }
 }
 
-document.getElementById("page").innerHTML = pages[0];
+document.getElementById("page").innerHTML=pages[0];
 </script>
 
 </body>
-</html>
+</html> 
+<img width="310" height="163" alt="hellokitty" src="https://github.com/user-attachments/assets/03695458-e91b-442e-8323-f01fc0127cb0" />
+
