@@ -120,18 +120,3 @@ setInterval(() => {
 
 </body>
 </html>
-
-.hello-kitty-corner {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  width: 120px;
-  z-index: 5;
-  animation: kittyFloat 3s ease-in-out infinite;
-}
-
-@keyframes kittyFloat {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
-}
